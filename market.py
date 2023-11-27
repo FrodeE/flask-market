@@ -1,13 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 # Decorator - one step before app is executed.
 @app.route('/') # Our homepage
-def hello_world():
-    return '<h1>This is a bigger hello world!</h1>'      # Here we can return some HTML
+def home_page():
+    return render_template('home.html')
 
 # Dynamic route example
-@app.route('/user/<username>')
+@app.route('/about/<username>')
 def about_page(username):
-    return f'<h1>This is the user page of {username}</h1>'
+    return render_template('about.html', name=username)
 
